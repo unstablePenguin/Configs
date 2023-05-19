@@ -8,13 +8,14 @@ R="\033[0;31m"
 G="\033[0;32m"
 NC="\033[00m"
 
-USAGE="Usage: $0 {Endpoint IP} {Remote Network} [# of clients]"
+USAGE="Usage: $0 {Endpoint IP} {Port} {Remote Network} [# of clients]"
 SERVER=""
-num_clients=$3
+num_clients=$4
 ENDPOINT=$1
-REMOTE_NET=$2
+REMOTE_NET=$3
+[[ $2 < 65536 && $2 > 1024 ]] && PORT=$2 || PORT=51820
 # Checks for Args more than 1.
-if [[ $# -gt 3 || $# -lt 2 ]]; then
+if [[ $# -gt 4 || $# -lt 3 ]]; then
 	printf "${R}[E] $USAGE${NC}\n"
 	exit 1
 fi
@@ -37,7 +38,7 @@ function mkServer()
     cat << EOF >> ${SERVER}.conf
 [Interface]
 Address = 10.66.66.1/24
-ListenPort = 51820
+ListenPort = $PORT
 PrivateKey = $(cat ${SERVER}.key)
 EOF
 
@@ -61,7 +62,7 @@ PrivateKey = $(cat ${client}.key)
 
 [Peer]
 PublicKey = $(cat ${SERVER}.pub)
-Endpoint = $ENDPOINT
+Endpoint = ${ENDPOINT}:${PORT}
 AllowedIPs = $REMOTE_NET
 EOF
     # Add Client to Server Config

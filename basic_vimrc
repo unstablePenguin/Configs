@@ -7,8 +7,8 @@ set cursorline
 set cursorcolumn
 set showmode
 set history=100
-#colorscheme embark
-colorscheme don
+"colorscheme embark
+colorscheme ron
 hi Normal ctermbg=none
 " Enable auto completion menu after pressing TAB.
 set wildmenu
