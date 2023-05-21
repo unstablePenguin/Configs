@@ -1,7 +1,7 @@
 #!/bin/bash
 #
-#export PS1="\[\e[33m\]\!\[\e[m\] \[\e[31m\]\u\[\e[m\] \[\e[32m\]\h\[\e[m\]\[\e[31m\][\[\e[m\]\[\e[32m\]\W\[\e[m\]\[\e[31m\]]\[\e[m\]: \e[$(( $(tput cols) - 14))G\[\e[32m\]$(ip r get 1.1.1.1 | cut -d" " -f 3)\[\e[00m\]\n"
-#
+#PS1="\[\e[33m\]\!\[\e[m\] \[\e[31m\]\u\[\e[m\] \[\e[32m\]\h\[\e[m\]\[\e[31m\][\[\e[m\]\[\e[32m\]\W\[\e[m\]\[\e[31m\]]\[\e[m\]: \e[$(( $(tput cols) - (( ${#LIP[$#]} - 1 )) ))G\[\e[32m\]${LIP}\[\e[00m\]\n"
+
 let MAXW=$(tput cols)
 let MAXH=$(tput lines)
 let HALFW=$(( $MAXW / 2 ))
