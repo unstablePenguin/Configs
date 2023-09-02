@@ -20,7 +20,7 @@ if [[ $# -gt 4 || $# -lt 3 ]]; then
 	exit 1
 fi
 # If num_clients is not set. Set to 2
-[ -v $3 ] && num_clients=2 || num_clients=$3
+[ -v $4 ] && num_clients=2 || num_clients=$4
 
 # Server Creation
 function mkServer()
