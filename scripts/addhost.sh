@@ -23,7 +23,7 @@ case $DISTRO in
         fi
         ;;
     debian )
-        /bin/dpkg -l sshpass 2>/dev/null
+        /bin/dpkg -l sshpass 2>&1 >/dev/null
         if [[ $? == 1 ]]; then
             printf "${warn}[Warning]${reset}sshpass is required. ${blue}Please install it:\nsudo apt install sshpass\n"
             exit 1

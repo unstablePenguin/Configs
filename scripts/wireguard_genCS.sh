@@ -37,7 +37,7 @@ function mkServer()
     printf "${G}[S] Compiling Server Configuration${NC}\n"
     cat << EOF >> ${SERVER}.conf
 [Interface]
-Address = 10.77.77.1/24
+Address = 10.66.0.1/24
 ListenPort = $PORT
 PrivateKey = $(cat ${SERVER}.key)
 EOF
@@ -49,7 +49,7 @@ EOF
 function mkClient()
 {
     client=client${1}
-    addr=10.77.77.$(( 1 + $1 ))
+    addr=10.66.0.$(( 1 + $1 ))
     # Create Client keys
     printf "${G}[S] Generating Client Keys${NC}\n"
     /usr/bin/wg genkey | (umask 0077 && tee ${client}.key) | wg pubkey > ${client}.pub
