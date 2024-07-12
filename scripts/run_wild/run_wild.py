@@ -16,7 +16,7 @@ fmt = "%F %T - "
 
 # Variables
 COMMAND = "./echo"
-ERROR_LOG = f"{datetime.utcnow().strftime('%F_%T_')}run_wild_error.log"
+ERROR_LOG = f"{datetime.utcnow().strftime('%F_')}run_wild_error.log"
 RUN_LOG = "run_wild.log"
 
 # Colors
@@ -56,14 +56,14 @@ def tee(data, file):
     """Prints data to screen and file"""
     print(data)
     with open(file, "a") as f:
-        f.write(data + "\n")
+        f.write(data.lstrip() + "\n")
 
 # Main
 def main():
     # Init signal handler for signal interrupt
     signal(SIGINT, handleInterrupt)
-    OUTFILE = Path(f"{args.outfile}_{datetime.utcnow().strftime('%F_%T')}.log")
-
+    OUTFILE = Path(f"{args.outfile}_{datetime.utcnow().strftime('%F_')}.log")
+    tee(" ",RUN_LOG)
     tee(f"{GRN}[+] {YLW}{datetime.utcnow().strftime(fmt)}{GRN} Successfully initialized program.{RST}", RUN_LOG)
     tee(f"{BLU}[-]{GRN} Output file: {YLW}{OUTFILE.absolute()}{RST}", RUN_LOG)
     MIN = args.min
