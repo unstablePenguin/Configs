@@ -1,0 +1,11 @@
+#!/bin/bash
+# This script echos data and exits successfully as long as it does not end in an 8.
+data=$@
+
+if [[ "$data" == *"8" ]]; then
+    echo $data failed 1>&2
+    exit 1
+else
+    echo $data
+    exit 0
+fi
