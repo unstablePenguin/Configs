@@ -17,7 +17,7 @@ fmt = "%F %T - "
 # Variables
 COMMAND = "./echo"
 ERROR_LOG = f"{datetime.utcnow().strftime('%F_%T_')}run_wild_error.log"
-RUN_LOG = run_wild.log
+RUN_LOG = "run_wild.log"
 
 # Colors
 RED = Fore.RED
@@ -28,12 +28,12 @@ RST = Style.RESET_ALL
 
 # Init parser
 parser = ArgumentParser(prog="Run_Wild",
-                        description="""Run_Wild runs numbers to the screen at randomly.""",
-                        epilog=f"{YLW}Example:{RED} run_wild.py {GRN}-m {YLW}0 {GRN}-M {YLW}300 {BLU}numbers.txt output{RST}")
+                        description="""Run_Wild outputs numbers to the screen and a file at random intervals.""",
+                        epilog=f"{YLW}Example:{RED} run_wild.py {GRN}-m {YLW}0 {GRN}-M {YLW}300 {BLU}numbers.txt output{RST}\n")
 parser.add_argument("infile", help="Input file to read numbers from.")
 parser.add_argument("outfile", help="Output file to write to.")
-parser.add_argument("--min", "-m", help="Minimum time to delay in seconds. Default 1 second", default=1, type=int)
-parser.add_argument("--max", "-M", help="Maximum time to delay in seconds. Default 300 seconds", default=300, type=int)
+parser.add_argument("--min", "-m", help=f"{GRN}Minimum time to delay in seconds.{BLU} Default{YLW} 1 {BLU}second{RST}", default=1, type=int)
+parser.add_argument("--max", "-M", help=f"{GRN}Maximum time to delay in seconds.{BLU} Default{YLW} 300 {BLU}seconds{RST}", default=300, type=int)
 args = parser.parse_args()
 
 
@@ -63,6 +63,8 @@ def main():
     # Init signal handler for signal interrupt
     signal(SIGINT, handleInterrupt)
     OUTFILE = Path(f"{args.outfile}_{datetime.utcnow().strftime('%F_%T')}.log")
+
+    tee(f"{GRN}[+] {YLW}{datetime.utcnow().strftime(fmt)}{GRN} Successfully initialized program.{RST}", RUN_LOG)
     tee(f"{BLU}[-]{GRN} Output file: {YLW}{OUTFILE.absolute()}{RST}", RUN_LOG)
     MIN = args.min
     MAX = args.max
