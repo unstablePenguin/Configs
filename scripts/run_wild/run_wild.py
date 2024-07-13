@@ -87,6 +87,7 @@ def main():
         except:
             tee(f"{RED}[!] {datetime.utcnow().strftime(fmt)}Error: Failed to execute.\n{COMMAND} {number}\n{process.stderr}{RST}",ERROR_LOG)
         tee(process.stdout, OUTFILE)
+    tee(f"{GRN}[+] {YLW}{datetime.utcnow().strftime(fmt)}{GRN} Successfully completed execution.{RST}", RUN_LOG)
 if __name__ == "__main__":
     main()
 
