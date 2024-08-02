@@ -245,13 +245,14 @@ def main(
         ) -> None:
     """Adds machine to ssh config and creates new sshkeys for it."""
 #}}}
+    # Ensure required applications are installed.
     missing = check_required_apps(REQUIRED_APPS)
     if missing:
         exit()
     # If password null get password
     if not password:
         password = Prompt.ask("Enter the password for the remote machine :lock:", password=True)
-    if DEBUG is True:
+    if DEBUG:
         print(f"Args: {name} {username} {password} {ipaddr} {port} {jumphost}")
     print(f"Welcome to AddHost {VERSION}")
     hosts = get_ssh_config(SSH_CONFIG)
