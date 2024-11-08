@@ -1,0 +1,12 @@
+Host test
+    Hostname 10.0.0.12
+    User admin
+    Port 22
+    ControlPath /home/redadmin/.ssh/test.sock
+    Identityfile /home/redadmin/.ssh/test
+Host red2
+    Hostname 10.10.10.34
+    User redadmin
+    Port 14524
+    ControlPath /home/redadmin/.ssh/red2.sock
+    Identityfile /home/redadmin/.ssh/red2

@@ -3,7 +3,7 @@
 
 # Imports
 import libtmux
-from subprocess import run
+from subprocess import Popen
 from sys import argv
 
 # Variables
@@ -60,7 +60,7 @@ def window1_setup():
     bp1.send_keys("ls /tmp", enter=True)
 # Main
 def main():
-    terminal = run(COMMAND)
+    terminal = Popen(COMMAND)
     window1_setup()
 # to divide into equal parts the first division is the percentage of 100 the last is 50% and each split is the number of remaining panes to be created.
 
