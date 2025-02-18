@@ -88,7 +88,7 @@ IP=$4
 [ -v $5 ] && PORT="22" || PORT=$5 # If port is not set. Set to 22
 IDFILE="$HOME/.ssh/$NAME"
 
-ssh-keygen -f $IDFILE -q </dev/null
+ssh-keygen -t ed25519 -C "" -f $IDFILE -q </dev/null
 if [ $? ]; then
     if [ -v $JUMPHOSTS ]; then
         sshpass -p $PASSWORD ssh-copy-id -f -p $PORT -i $IDFILE $USER@$IP
