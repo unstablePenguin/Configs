@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+# This script untars tar
+
+# Variables
+TAR_FILE="test.tar"
+# Functions
+define_colors()
+{
+    RED="\033[31m"
+    GRN="\033[32m"
+    YLW="\033[33m"
+    BLU="\033[34m"
+    MAG="\033[35m"
+    CYN="\033[36m"
+    GRY="\033[37m"
+    WHT="\033[97m"
+    NC="\033[0m"
+}
+
+print_info()
+{
+    printf "${CYN}[-] Info: ${1}${NC}\n"
+}
+print_error()
+{
+    printf "${RED}[!] Error: ${1}${NC}\n"
+}
+print_success()
+{
+    printf "${GRN}[+] Success: ${1}${NC}\n"
+}
+# Main
+function main()
+{
+    define_colors
+    tar -xvf $TAR_FILE
+}
+
+main $@
+
